@@ -303,6 +303,9 @@ static int confwrite(vt_t *vt, const char *file)
 {
     FILE *fp;
     char buff[MAXSTR],*p;
+
+    /* allow overwrite when started non-interactively */
+    if (vt == NULL) return 1;
     
     strcpy(buff,file);
     if ((p=strstr(buff,"::"))) *p='\0'; /* omit options in path */
